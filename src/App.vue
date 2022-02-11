@@ -1,28 +1,35 @@
 <template>
-  <h1 :[attr]="msg" @[event]="add">{{ msg }}</h1>
+  <button @click="add">ADD</button>
+  <h1>{{ reversedMessage }}</h1>
+  <h1>{{ reversedMessage }}</h1>
+  <h1>{{ reversedMessage }}</h1>
+  <h1>{{ reversedMessage }}</h1>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      msg: 'active',
-      attr: 'class',
-      event: 'click',
+      msg: 'Hello Computed!',
     }
   },
-  // 속성
+  computed: {
+    // reversedMessage() {
+    //   return this.msg.split('').reverse().join('')
+    // },
+    reversedMessage: {
+      get() {
+        return this.msg.split('').reverse().join('')
+      },
+      set(value) {
+        this.msg = value
+      },
+    },
+  },
   methods: {
     add() {
-      this.msg += '!'
+      this.reversedMessage += '!?'
     },
   },
 }
 </script>
-
-<style scoped>
-.active {
-  color: royalblue;
-  font-size: 100px;
-}
-</style>
