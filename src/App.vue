@@ -1,28 +1,20 @@
 <template>
-  <h1 
-    :style="[fontStyle, backgroundStyle]"
-    @click="changeStyle">
-    Hello?! 
-  </h1>
+  <h1>{{ msg }}</h1>
+  <input 
+    type="text"
+    v-model.trim="msg"/>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      fontStyle: {
-        color: 'orange',
-        fontSize: '30px'
-      },
-      backgroundStyle: {
-        backgroundColor: 'black'
-      }
+      msg: 'Hello world!'
     }
   },
-  methods: {
-    changeStyle() {
-      this.fontStyle.color = 'red',
-      this.fontStyle.fontSize = '50px'
+  watch: {
+    msg() {
+      console.log(typeof this.msg)
     }
   }
 }
