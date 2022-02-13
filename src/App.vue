@@ -1,21 +1,14 @@
 <template>
-  <h1>{{ msg }}</h1>
-  <input 
-    type="text"
-    v-model.trim="msg"/>
+  <MyBtn class="heropy">
+    Banana
+  </MyBtn>
 </template>
 
 <script>
+import MyBtn from '~/components/MyBtn'
 export default {
-  data() {
-    return {
-      msg: 'Hello world!'
-    }
+  components: {
+    MyBtn
   },
-  watch: {
-    msg() {
-      console.log(typeof this.msg)
-    }
-  }
 }
 </script>
