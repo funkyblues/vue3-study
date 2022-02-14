@@ -1,25 +1,11 @@
 <template>
   <div class="btn">
-    <slot></slot>
+    <slot name="icon"></slot>
+    <slot name="text"></slot>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    color: {
-      type: String,
-      default: 'gray'
-    },
-    large: {
-      type: Boolean,
-      default: false
-    }
-  }
-}
-</script>
-
-<style scoped lang="scss">
+<style scoped>
   .btn {
     display: inline-block;
     margin: 4px;
@@ -28,10 +14,5 @@ export default {
     background-color: gray;
     color: white;
     cursor: pointer;
-    &.large {
-    font-size: 20px;
-    padding: 10px 20px;
-    }
   }
-    
 </style>

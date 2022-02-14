@@ -1,14 +1,16 @@
 <template>
-  <MyBtn class="heropy">
-    Banana
-  </MyBtn>
+  <Hello ref="hello" />
 </template>
 
 <script>
-import MyBtn from '~/components/MyBtn'
+import Hello from './components/hello'
+
 export default {
   components: {
-    MyBtn
+    Hello,
   },
+  mounted() {
+    console.log(this.$refs.hello.$refs.good)
+  }
 }
 </script>
