@@ -1,16 +1,23 @@
 <template>
-  <Hello ref="hello" />
+  <MyBtn
+    class="changuk"
+    style="color: red;"
+    color="#ff0000"
+    @hello="log">
+    Apple
+  </MyBtn>
 </template>
 
 <script>
-import Hello from './components/hello'
-
+import MyBtn from './components/MyBtn'
 export default {
   components: {
-    Hello,
+    MyBtn
   },
-  mounted() {
-    console.log(this.$refs.hello.$refs.good)
+  methods: {
+    log() {
+      console.log("Hello world!")
+    }
   }
 }
 </script>
