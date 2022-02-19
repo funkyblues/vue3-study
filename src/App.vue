@@ -1,23 +1,7 @@
 <template>
-  <MyBtn
-    class="changuk"
-    style="color: red;"
-    color="#ff0000"
-    @hello="log">
-    Apple
-  </MyBtn>
+  <RouterView />
 </template>
 
-<script>
-import MyBtn from './components/MyBtn'
-export default {
-  components: {
-    MyBtn
-  },
-  methods: {
-    log() {
-      console.log("Hello world!")
-    }
-  }
-}
-</script>
+<style lang="scss">
+@import "./scss/main.scss"
+</style>
