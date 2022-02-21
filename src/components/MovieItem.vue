@@ -34,7 +34,23 @@ export default {
     border-radius: 4px;
     background-color: $gray-400;
     background-size: cover;
+    background-position: center;
     position: relative;
+    &::after {
+      content: "";
+      opacity: 0;
+      position: absolute;
+      top: -8px;
+      bottom: -8px;
+      left: -8px;
+      right: -8px;
+      border: 8px solid $primary;
+      border-radius: 6px;
+      transition: opacity 0.2s ease-in-out;
+    }
+    &:hover::after {
+      opacity: 0.5;
+    }
     .info {
       background-color: rgba($black, .3);
       width: 100%;
@@ -44,6 +60,16 @@ export default {
       position: absolute;
       left: 0;
       bottom: 0;
+      backdrop-filter: blur(3px);
+      .year {
+        color: $primary;
+      }
+      .title {
+        color: $white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 </style>
