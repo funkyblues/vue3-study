@@ -1,6 +1,4 @@
 <template>
-<!-- skeleton UI 추가 -->
-<!-- loading 중이면 skeleton, 아니면 loading된 내용. -->
   <div class="container">
     <template 
       v-if="loading">
@@ -15,9 +13,6 @@
           <div class="skeleton etc"></div> 
         </div>
       </div>
-
-    <!-- html에선 dashcase로 작성해주어야 함. -->
-    <!-- Boolean은 속성의 유무로만으로도 true false지정 가능. -->
       <Loader 
         :size="3"
         :z-index="9"
@@ -27,8 +22,12 @@
       v-else 
       class="movie-details">
       <div 
-        :style="{ backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster)})` }" 
-        class="poster"></div>
+        :style="{ backgroundImage: `url(${requestDiffSizeImage(theMovie.Poster, 1000)})` }" 
+        class="poster">
+        <Loader 
+          v-if="imageLoading"
+          absolute />
+      </div>
       <div class="specs">
         <div class="title">
           {{ theMovie.Title }}
@@ -44,14 +43,11 @@
         <div class="ratings">
           <h3>Ratings</h3>
           <div class="rating-wrap">
-            <!-- theMovie.Ratings의 배열은 객체로 이루어져 있기 때문에, 
-            사용하기 전에 바로 객체 구조분할 하고 쓰겠다. -->
             <div
               v-for="{ Source: name, Value: score } in theMovie.Ratings"
               :key="name" 
               :title="name"
               class="rating">
-              <!-- 데이터바인딩을 이용해 src에 데이터를 입력해주기 위함. -->
               <img 
                 :src="`https://raw.githubusercontent.com/ParkYoungWoong/vue3-movie-app/master/src/assets/${name}.png`"
                 :alt="name" />
@@ -87,7 +83,11 @@ export default {
   components: {
     Loader
   },
-  // 
+  data() {
+    return {
+      imageLoading: true
+    }
+  },
   computed: {
     theMovie() {
       return this.$store.state.movie.theMovie
@@ -96,20 +96,28 @@ export default {
       return this.$store.state.movie.loading
     }
   },
-  // created() : 생성 직후 searchMovieWithId를 실행.
   created() {
     console.log(this.$route)
     this.$store.dispatch('movie/searchMovieWithId', {
       id: this.$route.params.id
     })
   },
-  // 더 높은 해상도 영화 포스터 가져오기 위한 메서드
   methods: {
     requestDiffSizeImage(url, size = 700) {
-      return url.replace('SX300', `SX${size}`)
+      if (!url || url === 'N/A') {
+        this.imageLoading = false
+        return ''
+      }
+      const src = url.replace('SX300', `SX${size}`)
+      this.$loadImage(src)
+        .then(() => {
+          this.imageLoading = false
+        })
+      return src
     }
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -165,6 +173,7 @@ export default {
     background-color: $gray-200;
     background-size: cover;
     background-position: center;
+    position: relative;
   }
   .specs {
     flex-grow: 1;
@@ -178,8 +187,6 @@ export default {
     .labels {
       color: $primary;
       span {
-        // 가운데 점?
-        // 가상요소 선택자
         &::after {
           content: "\00b7";
           margin: 0 6px;
@@ -200,7 +207,6 @@ export default {
           align-items: center;
           margin-right: 32px;
           img {
-            // 이미지 비율 유지하기 위함.
             height: 30px;
             flex-shrink: 0;
             margin-right: 6px;

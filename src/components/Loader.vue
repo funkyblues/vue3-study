@@ -1,14 +1,8 @@
 <template>
-<!-- 클래스를 데이터 바인딩 수행. -->
-<!-- absolute, fixed 가 참이면 클래스로 추가 -->
-<!-- absolute: absolute, fixed: fixed를 아래처럼 줄임. -->
-<!-- 속성-데이터가 같으므로 축약 -->
   <div 
     :style="{
       width: `${size}rem`,
       height: `${size}rem`,
-      // vuejs에선 Camelcase를 dashcase로 변경해줄 수 있기 때문
-      // zIndex: zIndex
       zIndex
     }"
     :class="{ 
