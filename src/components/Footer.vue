@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo'
+import Logo from './Logo.vue'
 export default {
   components: {
     Logo

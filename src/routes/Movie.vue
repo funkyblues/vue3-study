@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import Loader from '~/components/Loader'
+import Loader from '../components/Loader'
 export default {
   components: {
     Loader
@@ -121,7 +121,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/scss/main';
+@import '../scss/main';
 .container {
   padding-top: 40px;
 }

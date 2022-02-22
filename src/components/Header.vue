@@ -2,7 +2,6 @@
   <header>
     <Logo />
     <div class="nav nav-pills">
-      <!-- 현재 겨울왕국 2의 내용만 class가 할당되도록 코드 작성되어있음. -->
       <div
         v-for="nav in navigations"
         :key="nav.name"
@@ -20,7 +19,7 @@
 </template>
 
 <script>
-import Logo from './Logo'
+import Logo from './Logo.vue'
 export default {
   components: {
     Logo
@@ -53,8 +52,6 @@ export default {
         return false
       }
       console.log(this.$route)
-      // fullpath: '/movie/tt2294629'
-      // test() 메서드로 정규표현식과 일치하는지 아닌지를 체크.
       return path.test(this.$route.fullPath)
     }
   }

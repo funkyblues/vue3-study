@@ -24,7 +24,7 @@
 
 <script>
 import MovieItem from './MovieItem.vue'
-import Loader from '~/components/Loader'
+import Loader from './Loader'
 export default {
   components: {
     MovieItem,
@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
+@import "../scss/main";
   .container {
     margin-top: 30px;
     .inner {
