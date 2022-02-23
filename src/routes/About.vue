@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Loader from "../components/Loader"
 export default {
   components: {
@@ -29,23 +30,36 @@ export default {
     }
   },
   computed: {
-    image() {
-      return this.$store.state.about.image
-    },
-    name() {
-      return this.$store.state.about.name
-    },
-    email() {
-      return this.$store.state.about.email
-    },
-    blog() {
-      return this.$store.state.about.blog
-    },
-    phone() {
-      return this.$store.state.about.phone
-    }
+    // about모듈에 있는 상태들을 배열 데이터로 불러오기
+    // 문자데이터로 state들을 가져오기
+    // mapState() 함수가 해당 state들을 객체 데이터로 반환해줌
+
+    // computed옵션에 다른 데이터를 사용해줄 수도 있기 때문에, 
+    // 아래처럼 전개연산자로 하나의 객체 데이터 내부에 작성하는 방식으로 작성해주는 게 좋다.
+    ...mapState('about', [
+      'image',
+      'name',
+      'email',
+      'blog',
+      'phone'
+    ])
   },
-  // mounted된 후에 실행. (HTML 연결)
+    // image() {
+    //   return this.$store.state.about.image
+    // },
+    // name() {
+    //   return this.$store.state.about.name
+    // },
+    // email() {
+    //   return this.$store.state.about.email
+    // },
+    // blog() {
+    //   return this.$store.state.about.blog
+    // },
+    // phone() {
+    //   return this.$store.state.about.phone
+    // }
+  //},
   mounted() {
     this.init()
   },
@@ -66,7 +80,7 @@ export default {
     width: 250px;
     height: 250px;
     margin: 40px auto 20px;
-    padding: 30px;
+    padding: 10px;
     border: 10px solid $gray-300;
     border-radius: 50%;
     box-sizing: border-box;
