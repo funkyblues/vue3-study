@@ -13,7 +13,7 @@ const { VueLoaderPlugin } = _require("vue-loader");
 module.exports = {
   resolve: {
     // 경로에서 확장자 생략 설정
-    extensions: [".js", ".vue"],
+    extensions: [".js", ".vue", "scss"],
     // 경로 별칭 설정
     alias: {
       "~": path.resolve(__dirname, "src"),
